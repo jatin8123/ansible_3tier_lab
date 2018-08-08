@@ -1,0 +1,12 @@
+---
+# tasks file for roles/apache
+- name: install httpd package
+  yum: 
+    name: "{{ web_pkg }}"
+    state: latest
+
+- name: enable apache at boot
+  service:
+    name: "{{ web_svc }}"
+    state: started
+    enabled: yes

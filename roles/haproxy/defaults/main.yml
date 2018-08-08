@@ -1,0 +1,6 @@
+---
+# defaults file for roles/haproxy
+
+http_pkg: httpie
+haproxy_pkg: haproxy
+haproxy_service: haproxy

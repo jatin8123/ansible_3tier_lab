@@ -1,0 +1,4 @@
+---
+# defaults file for roles/postgresql
+db_service: postgresql
+db_pkg: postgresql-server

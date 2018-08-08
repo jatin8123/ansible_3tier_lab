@@ -1,0 +1,30 @@
+- name: Configuration
+  hosts: all
+  gather_facts: false
+  become: true
+  pre_tasks:
+    - name: enable repos
+      template: 
+        src: ./open_three-tier-app.repo
+        dest: /etc/yum.repos.d/open_three-tier-app.repo
+        mode: 0644
+
+- name: deploy haproxy
+  hosts: frontends
+  roles:
+    - haproxy
+
+- name: deploy tomcat
+  hosts: apps
+  roles:
+    - tomcat
+
+- name: deploy db
+  hosts: appdbs
+  roles:
+    - postgresql
+
+- name: deploy apache
+  hosts: apps
+  roles:
+    - apache

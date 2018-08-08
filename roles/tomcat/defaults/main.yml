@@ -1,0 +1,6 @@
+---
+# defaults file for roles/tomcat
+
+tomcat_pkg: tomcat
+tomcat_svc: tomcat
+

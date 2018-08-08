@@ -1,0 +1,21 @@
+---
+# tasks file for roles/postgresql
+- name: install db
+  yum:
+    name: "{{ db_pkg}}"
+    state: installed
+
+- name: enable db service at boot
+  service: 
+    name: "{{ db_service }}"
+    state: started
+    enabled: yes
+
+- name: check dir status
+  stat:
+     path: "/var/lib/pgsql/data"
+  register: dirout
+
+- name: initialize db
+  command: postgresql-setup initdb
+  when: dirout.stat.exists == False
